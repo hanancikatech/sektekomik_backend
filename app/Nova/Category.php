@@ -3,26 +3,24 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Posts extends Resource
+class Category extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Posts::class;
+    public static $model = \App\Models\Category::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -30,7 +28,7 @@ class Posts extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title'
+        'id',
     ];
 
     /**
@@ -43,22 +41,6 @@ class Posts extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-
-            Text::make(__('Title'), 'title')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make(__('slug'), 'slug')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make(__('Description'), 'desc')
-                ->sortable()
-                ->rules('required', 'max:255'),
-            
-            Text::make(__('Content'), 'content'),
-
-            HasMany::make("Vidoes" , "Videos" , Videos::class),
         ];
     }
 

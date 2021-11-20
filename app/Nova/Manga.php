@@ -3,19 +3,18 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Videos extends Resource
+class Manga extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Videos::class;
+    public static $model = \App\Models\Manga::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -30,7 +29,7 @@ class Videos extends Resource
      * @var array
      */
     public static $search = [
-        'id','title','eps','link','img'
+        'id','title','author'
     ];
 
     /**
@@ -44,18 +43,17 @@ class Videos extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            BelongsTo::make('Created By', 'createdBy', User::class),
+            Text::make(__('Title'), 'title')
+                ->rules('required', 'max:255'),
 
-            BelongsTo::make("Posts" , 'posts', Posts::class),
+            Text::make(__('Author'), 'author')
+                ->rules('required', 'max:255'),
 
-            Text::make(__('Title'), 'title')->sortable(),
+            Text::make(__('Descriptions'), 'description')
+                ->rules('required', 'max:255'),
 
-            Text::make(__('Eps'), 'eps')->sortable(),
-
-            Text::make(__('Link'), 'link')->sortable(),
-
-            Text::make(__('Img'), 'img')->sortable(),
-                
+            Text::make(__('Image'), 'image')
+                ->rules('required', 'max:255'),
         ];
     }
 

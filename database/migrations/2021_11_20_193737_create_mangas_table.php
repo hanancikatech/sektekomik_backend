@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\Posts;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Category;
 
-class CreateVideosTable extends Migration
+class CreateMangasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +14,13 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('mangas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class , 'created_by');
-            $table->foreignIdFor(Posts::class);
+            $table->foreignIdFor(Category::class);
             $table->string('title');
-            $table->string('eps');
-            $table->string('img');
-            $table->string('link');
+            $table->string('author');
+            $table->string('description');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('mangas');
     }
 }
