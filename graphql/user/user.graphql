@@ -1,0 +1,11 @@
+
+extend type Query {
+    users: [User!]! @all
+    user(id : ID!): User! @find
+} 
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+}

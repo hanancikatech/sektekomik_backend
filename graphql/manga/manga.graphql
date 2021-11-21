@@ -1,0 +1,33 @@
+
+extend type Query {
+  mangas: [Manga]! @paginate(defaultCount : 10)
+  mangaQuery: [Manga!]! @paginate(resolver: "MangaQuery@all" , defaultCount : 10) 
+}
+
+type Manga {
+  id: ID!
+  title: String!
+  author: String!
+  is_hot: Boolean!
+  type : String!
+  description: String!
+  release: String!
+  slug: String!
+  media: [Media]! @MorphMany
+  categories: [Category] @BelongsToMany(table: "manga_category")
+}
+
+type Media {
+  id: ID!
+  name: String!
+  type: String!
+  collection_name : String!
+  original_url: String
+  mime_type : String
+  collection_name : String!
+}
+
+type Category {
+  id: ID!
+  name: String!
+}

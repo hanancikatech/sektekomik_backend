@@ -14,7 +14,11 @@ class MangaFactory extends Factory
     public function definition()
     {
         return [
-            //
+           'title'  => $this->faker->firstNameFemale(), 
+           'author' => $this->faker->firstName(),
+           'description' => $this->faker->text(),
+           'type' => 'Manga',
+           'slug' =>  $this->faker->slug(),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Manga;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,12 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        User::factory(10)->create();
         User::factory()->create([
             'name' => 'hanan',
             'email' => 'hasyrawi@gmail.com',
             'password' => bcrypt('awiroot123'),
         ]);
+        
+        $this->call([MangaSeeder::class]);        
     }
 }
